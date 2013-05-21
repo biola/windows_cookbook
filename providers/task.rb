@@ -27,7 +27,7 @@ action :create do
   else
     cmd =  "schtasks /Create /TN \"#{@new_resource.name}\" "
     cmd += "/SC #{@new_resource.frequency} "
-    cmd += "/MO #{@new_resource.frequency_modifier} " unless @new_resource.frequency.downcase == "once"
+    cmd += "/MO #{@new_resource.frequency_modifier} " unless @new_resource.frequency.to_s.downcase == "once"
     cmd += "/TR \"#{@new_resource.command}\" "
     if @new_resource.user && @new_resource.password
       cmd += "/RU \"#{@new_resource.user}\" /RP \"#{@new_resource.password}\" "
